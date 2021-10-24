@@ -1,0 +1,24 @@
+package ru.eshmakar.spring.security.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+//вместо web.xml будем использовать конфигурацию из java класса
+@Configuration
+@ComponentScan(basePackages = "ru.eshmakar.spring.security")
+@EnableWebMvc
+public class MyConfig {
+
+    @Bean
+    public ViewResolver viewResolver(){//чтобы использовать jsp страницы для отображения
+        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+        internalResourceViewResolver.setPrefix("/WEB-INF/view/");//установка начальной пути для отображения jsp файлов
+        internalResourceViewResolver.setSuffix(".jsp");//расширение файла
+        return internalResourceViewResolver;
+    }
+
+}
